@@ -9,11 +9,15 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  company: {
+    type: String,
+    required: true,
+  },
   brand: {
     type: String,
     required: true,
   },
-  company: {
+  location: {
     type: String,
     required: true,
   },
@@ -22,7 +26,19 @@ const PostSchema = new mongoose.Schema({
     enum: ["software", "hardware"],
     required: true,
   },
+  ps: {
+    type: String,
+    required: true,
+  },
   about: {
+    type: String,
+    required: true,
+  },
+  looking: {
+    type: String,
+    required: true,
+  },
+  contact: {
     type: String,
     required: true,
   },

@@ -23,42 +23,68 @@
           <div class="mt-5">
             <h2>Update a post</h2>
             <form action="/post/updatePost/<%= post.id %>?_method=POST" enctype="multipart/form-data" method="POST">
+
               <div class="mb-3">
                 <label for="brand" class="form-label">Brand</label>
                 <input id="brand" name="brand" value="<%= post.brand %>" type="text" class="form-control">
               </div>
+
               <div class="mb-3">
                 <label for="company" class="form-label">Company's Name</label>
-                <input id="company" name="company" value="<%= post.company %>" type="text" class="form-control" >
+                <input id="company" name="company" value="<%= post.company %>" type="text" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="location" class="form-label">Location(s)</label>
+                <input id="location" name="location" value="<%= post.location %>" type="text" class="form-control">
               </div>
 
               <div class="mb-3">Business Type</div>
               <div class="mb-3">
                 <label for="software" class="form-label">
-                  <% if (post.businessType === "software") { %>
-                    <input id="software" name="businessType" value="software" type="radio" class="" checked/>
-                  <%} else {%>
-                    <input id="software" name="businessType" value="software" type="radio" class=""/>
-                  <%}%>
-                   Software / AI </label>
+                  <% if (post.businessType==="software" ) { %>
+                    <input id="software" name="businessType" value="software" type="radio" class="" checked />
+                    <%} else {%>
+                      <input id="software" name="businessType" value="software" type="radio" class="" />
+                      <%}%>
+                        Software / AI
+                </label>
               </div>
 
               <div class="mb-3">
                 <label for="hardware" class="form-label">
-                  <% if (post.businessType === "hardware") { %>
-                    <input id="hardware" name="businessType" value="hardware" type="radio" class="" checked/>
-                  <%} else {%>
-                    <input id="hardware" name="businessType" value="hardware" type="radio" class=""/>
-                  <%}%>
-                  Hardware / Wearable </label>
+                  <% if (post.businessType==="hardware" ) { %>
+                    <input id="hardware" name="businessType" value="hardware" type="radio" class="" checked />
+                    <%} else {%>
+                      <input id="hardware" name="businessType" value="hardware" type="radio" class="" />
+                      <%}%>
+                        Hardware / Wearable
+                </label>
+              </div>
+
+              <div class="mb-3">
+                <label for="ps" class="form-label">The Product or Service that we offer</label>
+                <textarea id="ps" name="ps" class="form-control"><%= post.ps %></textarea>
               </div>
 
               <div class="mb-3">
                 <label for="about" class="form-label">About Us</label>
                 <textarea id="about" name="about" class="form-control"><%= post.about %></textarea>
               </div>
+
               <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
+                <label for="looking" class="form-label">What we are looking for to take our company to the next
+                  level?</label>
+                <textarea id="looking" name="looking" class="form-control"><%= post.looking %></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="contact" class="form-label">Contact Details</label>
+                <input id="contact" name="contact" value="<%= post.contact %>" type="text" class="form-control">
+              </div>
+
+              <div class="mb-3">
+                <label for="imgUpload" class="form-label">Logo</label>
                 <input type="file" class="form-control" id="imageUpload" name="file">
               </div>
               <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
@@ -72,9 +98,24 @@
               <h6>Company Name</h6>
               <%= post.company %>
 
-                <h6>About Us</h6>
-                <%= post.about %>
-                  <%}%>
+                <h6>Location(s)</h6>
+                <%= post.location %>
+
+                  <h6>Business Type</h6>
+                  <%= post.businessType %>
+
+                    <h6>The Product or Service that we offer</h6>
+                    <%= post.ps %>
+
+                      <h6>About Us</h6>
+                      <%= post.about %>
+
+                        <h6>What we are looking for to take our company to the next level?</h6>
+                        <%= post.looking %>
+
+                          <h6>Contact Details</h6>
+                          <%= post.contact %>
+                            <%}%>
       </div>
 
       <div class="col-6 mt-5">

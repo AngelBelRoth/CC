@@ -53,10 +53,14 @@ module.exports = {
       await Post.create({
         image: result.secure_url,
         cloudinaryId: result.public_id,
-        brand: req.body.brand,
         company: req.body.company,
+        brand: req.body.brand,
+        location: req.body.location,
         businessType: req.body.businessType,
+        ps: req.body.ps,
         about: req.body.about,
+        looking: req.body.looking,
+        contact: req.body.contact,
         likes: 0,
         user: req.user.id
 
@@ -83,6 +87,7 @@ module.exports = {
           await cloudinary.uploader.destroy(oldPost.cloudinaryId);
         }
       }
+      
       const post = await Post.findByIdAndUpdate(
         { _id: req.params.id },
         {
@@ -90,8 +95,12 @@ module.exports = {
           cloudinaryId: result.public_id,
           brand: req.body.brand,
           company: req.body.company,
+          location: req.body.location,
           businessType: req.body.businessType,
-          about: req.body.about
+          ps: req.body.ps,
+          about: req.body.about,
+          looking: req.body.looking,
+          contact: req.body.contact
         },
       );
       console.log("Post has been updated!");

@@ -12,15 +12,22 @@
         <div class="mt-5">
           <h2>Add a post</h2>
           <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            
             <div class="mb-3">
-              <label for="title" class="form-label">Brand</label>
-              <input type="text" class="form-control" id="brand" name="brand">
-            </div>
-            <div class="mb-3">
-              <label for="title" class="form-label">Company's Name</label>
-              <input type="text" class="form-control" id="company" name="company">
+              <label for="company" class="form-label">Company's Name</label>
+              <input id="company" name="company" type="text" class="form-control">
             </div>
 
+            <div class="mb-3">
+              <label for="brand" class="form-label">Brand</label>
+              <input id="brand" name="brand" type="text" class="form-control">
+            </div>
+
+            <div class="mb-3">
+              <label for="location" class="form-label">Location(s)</label>
+              <input id="location" name="location" type="text" class="form-control" >
+            </div>
+            
             <div class="mb-3">Business Type</div>
             <div class="mb-3">
               <label for="software" class="form-label">
@@ -34,11 +41,27 @@
             </div>
 
             <div class="mb-3">
-              <label for="caption" class="form-label">About Us</label>
-              <textarea class="form-control" id="about" name="about"></textarea>
+              <label for="ps" class="form-label">Tell us about the Product or Service you offer</label>
+              <textarea id="ps" name="ps" class="form-control"></textarea>
             </div>
+
             <div class="mb-3">
-              <label for="imgUpload" class="form-label">Image</label>
+              <label for="about" class="form-label">About Us</label>
+              <textarea id="about" name="about" class="form-control"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="looking" class="form-label">What are you looking for to take your company to the next level?</label>
+              <textarea id="looking" name="looking" class="form-control"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="contact" class="form-label">Contact Details</label>
+              <input id="contact" name="contact" type="text" class="form-control" >
+            </div>
+
+            <div class="mb-3">
+              <label for="imgUpload" class="form-label">Logo</label>
               <input type="file" class="form-control" id="imageUpload" name="file">
             </div>
             <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
