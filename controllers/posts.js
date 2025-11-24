@@ -26,6 +26,24 @@ module.exports = {
       console.log(err);
     }
   },
+  search: async (req, res) => {
+    try {
+      let searchBusiness = req.body.businessType
+
+      if (searchBusiness === 'all') {
+        const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+        res.render("feed.ejs", { posts: posts })
+      } else {
+        let filter = {
+          businessType: searchBusiness
+        }
+        const posts = await Post.find(filter).sort({ createdAt: "desc" }).lean();
+        res.render("feed.ejs", { posts: posts });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  },
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
@@ -41,7 +59,7 @@ module.exports = {
         about: req.body.about,
         likes: 0,
         user: req.user.id
-        
+
       });
       console.log("Post has been added!");
       res.redirect("/profile");
@@ -57,7 +75,7 @@ module.exports = {
         "secure_url": oldPost.image,
         "public_id": oldPost.cloudinaryId
       }
-      if (req.file.path) {
+      if (req.file) {
         // Update image to cloudinary
         result = await cloudinary.uploader.upload(req.file.path);
         // Check if the id is existed, Delete image from cloudinary

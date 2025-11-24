@@ -11,6 +11,8 @@ router.post("/createPost", upload.single("file"), postsController.createPost);
 
 router.post("/updatePost/:id", upload.single("file"), postsController.updatePost);
 
+router.post("/search", postsController.search);
+
 router.put("/likePost/:id", postsController.likePost);
 
 router.delete("/deletePost/:id", postsController.deletePost);

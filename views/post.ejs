@@ -35,13 +35,22 @@
               <div class="mb-3">Business Type</div>
               <div class="mb-3">
                 <label for="software" class="form-label">
-                  <input id="software" name="businessType" value="<%= post.businessType %>" type="radio" class="" /> Software /
-                  AI</label>
+                  <% if (post.businessType === "software") { %>
+                    <input id="software" name="businessType" value="software" type="radio" class="" checked/>
+                  <%} else {%>
+                    <input id="software" name="businessType" value="software" type="radio" class=""/>
+                  <%}%>
+                   Software / AI </label>
               </div>
+
               <div class="mb-3">
                 <label for="hardware" class="form-label">
-                  <input id="hardware" name="businessType" value="<%= post.businessType %>" type="radio" class="" /> Hardware /
-                  Wearable</label>
+                  <% if (post.businessType === "hardware") { %>
+                    <input id="hardware" name="businessType" value="hardware" type="radio" class="" checked/>
+                  <%} else {%>
+                    <input id="hardware" name="businessType" value="hardware" type="radio" class=""/>
+                  <%}%>
+                  Hardware / Wearable </label>
               </div>
 
               <div class="mb-3">

@@ -1,15 +1,43 @@
 <%- include('partials/header') -%>
+  <div>
+    <form action="/post/search" method="POST">
+      <div class="mb-3">
+        <label for="software" class="form-label">
+          <input id="software" value="software" name="businessType" type="radio" class="" /> Software /
+          AI</label>
+      </div>
+      <div class="mb-3">
+        <label for="hardware" class="form-label">
+          <input id="hardware" value="hardware" name="businessType" type="radio" class="" /> Hardware /
+          Wearable</label>
+      </div>
+      <div class="mb-3">
+        <label for="all" class="form-label">
+          <input id="all" value="all" name="businessType" type="radio" class="" /> All</label>
+      </div>
+      <button>Search</button>
+    </form>
+  </div>
+
+  <!-- id="software">Software
+        <% let software=posts.filter((element)=> element.businessType === 'software' ) %>
+id="hardware">Hardware
+                <% let hardware=posts.filter((element)=> element.businessType === 'hardware' ) %> -->
+
+
   <div class="container">
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
+
         <% for(var i=0; i<posts.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
             <a href="/post/<%= posts[i]._id%>">
               <img class="img-fluid" src="<%= posts[i].image%>">
             </a>
+            <h6><%= posts[i].brand%></h6>
           </li>
-        <% } %>
-        </ul>
+          <% } %>
+      </ul>
     </div>
-  </div>  
-<%- include('partials/footer') -%>
+  </div>
+  <%- include('partials/footer') -%>
