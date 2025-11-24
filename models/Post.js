@@ -23,7 +23,7 @@ const PostSchema = new mongoose.Schema({
   },
   businessType: {
     type: String,
-    enum: ["software", "hardware"],
+    enum: ["software", "hardware", "finance", "pr", "media", "other"],
     required: true,
   },
   ps: {

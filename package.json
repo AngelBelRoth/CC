@@ -1,7 +1,7 @@
 {
-  "name": "binary-upload-boom",
+  "name": "community-connect",
   "version": "1.0.0",
-  "description": "100Devs Social Network",
+  "description": "Community Connect",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",

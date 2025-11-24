@@ -5,8 +5,8 @@
         <div>
           <p><strong>User Name</strong>: <%= user.userName %>
           </p>
-          <p><strong>Email</strong>: <%= user.email %>
-          </p>
+          <!-- <p><strong>Email</strong>: <%= user.email %>
+          </p> -->
           <a href="/logout" class="col-3 btn btn-primary">Logout</a>
         </div>
         <div class="mt-5">
@@ -39,6 +39,23 @@
                 <input id="hardware" value="hardware" name="businessType" type="radio" class="" /> Hardware /
                 Wearable</label>
             </div>
+            <div class="mb-3">
+              <label for="finance" class="form-label">
+                <input id="finance" value="finance" name="businessType" type="radio" class="" /> Finance / Investor </label>
+            </div>
+            <div class="mb-3">
+              <label for="pr" class="form-label">
+                <input id="pr" value="pr" name="businessType" type="radio" class="" /> Publication / Marketing </label>
+            </div>
+            <div class="mb-3">
+              <label for="media" class="form-label">
+                <input id="media" value="media" name="businessType" type="radio" class="" /> Media </label>
+            </div>
+            <div class="mb-3">
+              <label for="other" class="form-label">
+                <input id="other" value="other" name="businessType" type="radio" class="" /> Other </label>
+            </div>
+            
 
             <div class="mb-3">
               <label for="ps" class="form-label">Tell us about the Product or Service you offer</label>
@@ -79,7 +96,7 @@
             <% } %>
         </ul>
         <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+          <a class="btn btn-primary" href="/feed">All Companies</a>
         </div>
       </div>
     </div>

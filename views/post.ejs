@@ -63,6 +63,50 @@
               </div>
 
               <div class="mb-3">
+                <label for="finance" class="form-label">
+                  <% if (post.businessType==="finance" ) { %>
+                    <input id="finance" name="businessType" value="finance" type="radio" class="" checked />
+                    <%} else {%>
+                      <input id="finance" name="businessType" value="finance" type="radio" class="" />
+                      <%}%>
+                        Finance / Investor
+                </label>
+              </div>
+
+              <div class="mb-3">
+                <label for="pr" class="form-label">
+                  <% if (post.businessType==="pr" ) { %>
+                    <input id="pr" name="businessType" value="pr" type="radio" class="" checked />
+                    <%} else {%>
+                      <input id="pr" name="businessType" value="pr" type="radio" class="" />
+                      <%}%>
+                        Publication / Marketing
+                </label>
+              </div>
+
+              <div class="mb-3">
+                <label for="media" class="form-label">
+                  <% if (post.businessType==="media" ) { %>
+                    <input id="media" name="businessType" value="media" type="radio" class="" checked />
+                    <%} else {%>
+                      <input id="media" name="businessType" value="media" type="radio" class="" />
+                      <%}%>
+                        Media
+                </label>
+              </div>
+
+              <div class="mb-3">
+                <label for="other" class="form-label">
+                  <% if (post.businessType==="other" ) { %>
+                    <input id="other" name="businessType" value="other" type="radio" class="" checked />
+                    <%} else {%>
+                      <input id="other" name="businessType" value="other" type="radio" class="" />
+                      <%}%>
+                        Other
+                </label>
+              </div>
+
+              <div class="mb-3">
                 <label for="ps" class="form-label">The Product or Service that we offer</label>
                 <textarea id="ps" name="ps" class="form-control"><%= post.ps %></textarea>
               </div>
@@ -120,7 +164,7 @@
 
       <div class="col-6 mt-5">
         <a class="btn btn-primary" href="/profile">Return to Profile</a>
-        <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        <a class="btn btn-primary" href="/feed">All Companies</a>
       </div>
     </div>
   </div>

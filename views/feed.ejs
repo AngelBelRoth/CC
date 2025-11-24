@@ -12,6 +12,22 @@
           Wearable</label>
       </div>
       <div class="mb-3">
+        <label for="finance" class="form-label">
+          <input id="finance" value="finance" name="businessType" type="radio" class="" /> Finance / Investor </label>
+      </div>
+      <div class="mb-3">
+        <label for="pr" class="form-label">
+          <input id="pr" value="pr" name="businessType" type="radio" class="" /> Publication / Marketing </label>
+      </div>
+      <div class="mb-3">
+        <label for="media" class="form-label">
+          <input id="media" value="media" name="businessType" type="radio" class="" /> Media</label>
+      </div>
+      <div class="mb-3">
+        <label for="other" class="form-label">
+          <input id="other" value="other" name="businessType" type="radio" class="" /> Others </label>
+      </div>
+      <div class="mb-3">
         <label for="all" class="form-label">
           <input id="all" value="all" name="businessType" type="radio" class="" /> All</label>
       </div>
@@ -34,7 +50,9 @@ id="hardware">Hardware
             <a href="/post/<%= posts[i]._id%>">
               <img class="img-fluid" src="<%= posts[i].image%>">
             </a>
-            <h6><%= posts[i].brand%></h6>
+            <h6>
+              <%= posts[i].brand%>
+            </h6>
           </li>
           <% } %>
       </ul>
