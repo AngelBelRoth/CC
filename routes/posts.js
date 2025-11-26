@@ -15,6 +15,8 @@ router.post("/search", postsController.search);
 
 router.put("/likePost/:id", postsController.likePost);
 
+router.put("/favoritePost/:id", postsController.favoritePost);
+
 router.delete("/deletePost/:id", postsController.deletePost);
 
 module.exports = router;

@@ -87,7 +87,7 @@ module.exports = {
           await cloudinary.uploader.destroy(oldPost.cloudinaryId);
         }
       }
-      
+
       const post = await Post.findByIdAndUpdate(
         { _id: req.params.id },
         {
@@ -124,18 +124,30 @@ module.exports = {
       console.log(err);
     }
   },
-  deletePost: async (req, res) => {
-    try {
-      // Find post by id
-      let post = await Post.findById({ _id: req.params.id });
-      // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
-      // Delete post from db
-      await Post.remove({ _id: req.params.id });
-      console.log("Deleted Post");
-      res.redirect("/profile");
-    } catch (err) {
-      res.redirect("/profile");
+
+  favoritePost: async (req, res) => {
+    if (req.user.favorite.includes(req.params.id)) {
+      req.user.favorite = req.user.favorite.filter(v => v !== req.params.id)
+    } else {
+      req.user.favorite.push(req.params.id)
     }
+    res.redirect(`/post/${req.params.id}`);
   },
+
+deletePost: async (req, res) => {
+  try {
+    // Find post by id
+    let post = await Post.findById({ _id: req.params.id });
+    // Delete image from cloudinary
+    await cloudinary.uploader.destroy(post.cloudinaryId);
+    // Delete post from db
+    await Post.remove({ _id: req.params.id });
+    console.log("Deleted Post");
+    res.redirect("/profile");
+  } catch (err) {
+    res.redirect("/profile");
+  }
+},
 };
+
+

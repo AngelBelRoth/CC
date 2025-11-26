@@ -35,18 +35,12 @@
     </form>
   </div>
 
-  <!-- id="software">Software
-        <% let software=posts.filter((element)=> element.businessType === 'software' ) %>
-id="hardware">Hardware
-                <% let hardware=posts.filter((element)=> element.businessType === 'hardware' ) %> -->
 
-
-  <div class="container">
+  <div class="container feed">
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
-
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
+          <li class="col-6 justify-content-between">
             <a href="/post/<%= posts[i]._id%>">
               <img class="img-fluid" src="<%= posts[i].image%>">
             </a>
@@ -56,6 +50,11 @@ id="hardware">Hardware
           </li>
           <% } %>
       </ul>
+
     </div>
+
+  </div>
+  <div class="row justify-content-center mt-5">
+    <a class="btn btn-primary" href="/feed">Back to the Top</a>
   </div>
   <%- include('partials/footer') -%>
