@@ -257,17 +257,6 @@ ul.post-grid li h6 {
 /* ------------------------------------------
    Universal Styling for: ul.row.list-unstyled
 ------------------------------------------- */
-ul.row.list-unstyled.profile {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-end;
-}
-
-ul.row.list-unstyled.profile>li {
-    flex: 0 0 50% !important;
-    max-width: 50% !important;
-}
-
 ul.row.list-unstyled {
     flex-direction: flex;
     justify-content: space-evenly;
@@ -307,6 +296,18 @@ ul.row.list-unstyled>li h6 {
     color: var(--teal-dark);
 }
 
+ul.row.list-unstyled.profile {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+ul.row.list-unstyled.profile>li {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+}
+
 .row.justify-content-between {
     margin: 20px 0;
 }
@@ -333,9 +334,10 @@ h6 {
     align-items: flex-end;
 }
 
-
 .user-name {
-    color: tan;
-    color: chocolate;
+    background: linear-gradient(90deg, #AB8B27, #D4AF37, #E1C447);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-size: 2rem;
 }
