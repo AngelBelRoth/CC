@@ -5,7 +5,7 @@
       <div class="col-6">
 
         <img class="img-fluid" src="<%= post.image%>" />
-        
+
         <div class="row justify-content-between">
 
           <form class="col-1" action="/post/favoritePost/<%= post.id %>?_method=PUT" method="POST">
@@ -15,7 +15,8 @@
           <form class="col-1" action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
             <button class="btn btn-primary fa fa-thumbs-up" type="submit"></button>
           </form>
-          <h3 class="col-3">Likes: <%= post.likes %></h3>
+          <h3 class="col-3">Likes: <%= post.likes %>
+          </h3>
 
           <%if(post.user==user.id){ %>
             <form action="/post/deletePost/<%= post.id %>?_method=DELETE" method="POST" class="col-3">
@@ -25,10 +26,10 @@
         </div>
       </div>
 
-      <div class="col-3 mt-5">
+      <div class="col-3">
         <%if(post.user==user.id){ %>
-          <div class="mt-5">
-            <h2>Update a post</h2>
+          <div>
+            <h5>Update Company's Info</h5>
             <form action="/post/updatePost/<%= post.id %>?_method=POST" enctype="multipart/form-data" method="POST">
 
               <div class="mb-3">
@@ -47,6 +48,17 @@
               </div>
 
               <div class="mb-3">Business Type</div>
+              <div class="mb-3">
+                <label for="fb" class="form-label">
+                  <% if (post.businessType==="fb" ) { %>
+                    <input id="fb" name="businessType" value="fb" type="radio" class="" checked />
+                    <%} else {%>
+                      <input id="fb" name="businessType" value="fb" type="radio" class="" />
+                      <%}%>
+                        Food / Beverage
+                </label>
+              </div>
+
               <div class="mb-3">
                 <label for="software" class="form-label">
                   <% if (post.businessType==="software" ) { %>
@@ -145,25 +157,25 @@
 
             <h6>Brand</h6>
             <%= post.brand %>
-
+              <div class="break"></div>
               <h6>Company Name</h6>
               <%= post.company %>
-
+                <div class="break"></div>
                 <h6>Location(s)</h6>
                 <%= post.location %>
-
-                  <h6>Business Type</h6>
+                  <div class="break"></div>
+                  <!-- <h6>Business Type</h6>
                   <%= post.businessType %>
-
+                    <div class="break"></div> -->
                     <h6>The Product or Service that we offer</h6>
                     <%= post.ps %>
-
+                      <div class="break"></div>
                       <h6>About Us</h6>
                       <%= post.about %>
-
+                        <div class="break"></div>
                         <h6>What we are looking for to take our company to the next level?</h6>
                         <%= post.looking %>
-
+                          <div class="break"></div>
                           <h6>Contact Details</h6>
                           <%= post.contact %>
                             <%}%>

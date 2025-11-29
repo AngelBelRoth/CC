@@ -318,6 +318,7 @@ h2 {
 }
 
 h3,
+h5,
 h6 {
     color: teal;
 }
@@ -340,4 +341,8 @@ h6 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 2rem;
+}
+
+.break {
+    height: 20px;
 }
