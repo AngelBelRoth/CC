@@ -7,7 +7,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Post Routes - simplified for now
 
-router.get('/favorites', postsController.getFavorites);
+router.get('/favorites', ensureAuth, postsController.getFavorites);
 
 router.get("/:id", ensureAuth, postsController.getPost);
 

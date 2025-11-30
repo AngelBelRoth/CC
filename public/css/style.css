@@ -354,5 +354,185 @@ h6 {
 
 .space-index {
     width: 100%;
-    height: 30vh;
+    height: 25vh;
+}
+
+.ab {
+    text-align: center;
+    margin-top: 200px;
+    font-family: cursive;
+}
+
+
+
+/* Navigation Bar Styling */
+.navbar {
+    background: #ffffff;
+    padding: 1rem 2rem;
+    border-bottom: 4px solid var(--teal-mid);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    margin-top: 50px;
+    z-index: 1000;
+}
+
+.navbar-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* Left side - Profile & Favorites */
+.navbar-actions {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 2px solid var(--teal-mid);
+    color: var(--teal-dark);
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    background: var(--teal-gradient);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(45, 182, 177, 0.3);
+}
+
+.nav-btn.favorites {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+.nav-btn.favorites:hover {
+    background: linear-gradient(135deg, #ff6b6b, #ff5252);
+    border-color: #ff6b6b;
+    color: white;
+}
+
+/* Right side - Filters & Search */
+.navbar-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1rem;
+    background: var(--teal-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+
+.navbar-filters {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.filter-group input[type="radio"] {
+    transform: scale(1.15);
+    accent-color: var(--teal-mid);
+    cursor: pointer;
+}
+
+.filter-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--teal-dark);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.search-btn {
+    background: var(--teal-gradient);
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(45, 182, 177, 0.35);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .navbar-container {
+        flex-wrap: wrap;
+    }
+
+    .navbar-right {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navbar-actions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .navbar-right {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navbar-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        justify-content: center;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+
+    .nav-btn {
+        flex: 1;
+    }
 }
