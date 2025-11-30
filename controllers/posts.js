@@ -243,7 +243,100 @@ module.exports = {
     } catch (error) {
       res.status(500).json({ error: 'Failed to check favorite' });
     }
+  },
+
+
+
+  // Add review
+  addReview: async (req, res) => {
+    try {
+      const postId = req.params.id;
+      const { rating, comment } = req.body;
+
+      // Validate rating
+      if (!rating || rating < 1 || rating > 5) {
+        return res.status(400).json({ error: 'Rating must be between 1 and 5' });
+      }
+
+      if (!comment || comment.trim() === '') {
+        return res.status(400).json({ error: 'Comment is required' });
+      }
+
+      const post = await Post.findById(postId);
+      if (!post) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+
+      // Check if user already reviewed
+      const existingReview = post.reviews.find(
+        review => review.user.toString() === req.user._id.toString()
+      );
+
+      if (existingReview) {
+        return res.status(400).json({ error: 'You have already reviewed this company' });
+      }
+
+      // Add review
+      post.reviews.push({
+        user: req.user._id,
+        userName: req.user.userName,
+        rating: parseInt(rating),
+        comment: comment.trim()
+      });
+
+      // Calculate average rating
+      const totalRating = post.reviews.reduce((sum, review) => sum + review.rating, 0);
+      post.averageRating = (totalRating / post.reviews.length).toFixed(1);
+      post.totalReviews = post.reviews.length;
+
+      await post.save();
+
+      res.redirect(`/post/${postId}`);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'Failed to add review' });
+    }
+  },
+
+  // Delete review
+  deleteReview: async (req, res) => {
+    try {
+      const { postId, reviewId } = req.params;
+
+      const post = await Post.findById(postId);
+      if (!post) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+
+      const review = post.reviews.id(reviewId);
+      if (!review) {
+        return res.status(404).json({ error: 'Review not found' });
+      }
+
+      // Check if user owns the review
+      if (review.user.toString() !== req.user._id.toString()) {
+        return res.status(403).json({ error: 'Not authorized' });
+      }
+
+      // Remove review
+      post.reviews.pull(reviewId);
+
+      // Recalculate average rating
+      if (post.reviews.length > 0) {
+        const totalRating = post.reviews.reduce((sum, review) => sum + review.rating, 0);
+        post.averageRating = (totalRating / post.reviews.length).toFixed(1);
+      } else {
+        post.averageRating = 0;
+      }
+      post.totalReviews = post.reviews.length;
+
+      await post.save();
+
+      res.redirect(`/post/${postId}`);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'Failed to delete review' });
+    }
   }
+  
 };
-
-

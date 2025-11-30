@@ -23,9 +23,12 @@ router.delete("/deletePost/:id", postsController.deletePost);
 
 // router.put("/favoritePost/:id", postsController.favoritePost);
 
+// router.get('/post/:id/is-favorited', postsController.isFavorited);
+
 router.post("/:id/toggle-favorite", postsController.toggleFavorite);
 
+router.post("/:id/review", ensureAuth, postsController.addReview);
 
-// router.get('/post/:id/is-favorited', postsController.isFavorited);
+router.delete("/:postId/review/:reviewId", ensureAuth, postsController.deleteReview);
 
 module.exports = router;

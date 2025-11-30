@@ -9,12 +9,14 @@
         <div class="row justify-content-between">
 
           <form class="col-1" action="/post/<%= post.id %>/toggle-favorite" method="POST">
-            <button class="btn btn-primary fa fa-heart <%= user.favorites.includes(post.id) ? 'text-primary' : '' %>" type="submit"></button>
-          </form>               
-          
+            <button class="btn btn-primary fa fa-heart <%= user.favorites.includes(post.id) ? 'text-primary' : '' %>"
+              type="submit"></button>
+          </form>
+
 
           <form class="col-1" action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
-            <button class="btn btn-primary fa fa-thumbs-up <%= post.likedBy.includes(user.id) ? 'text-info' : '' %>" type="submit"></button>
+            <button class="btn btn-primary fa fa-thumbs-up <%= post.likedBy.includes(user.id) ? 'text-info' : '' %>"
+              type="submit"></button>
           </form>
           <h3 class="col-3">Likes: <%= post.likes %>
           </h3>
@@ -168,24 +170,99 @@
                   <!-- <h6>Business Type</h6>
                   <%= post.businessType %>
                     <div class="break"></div> -->
-                    <h6>The Product or Service that we offer</h6>
-                    <%= post.ps %>
+                  <h6>The Product or Service that we offer</h6>
+                  <%= post.ps %>
+                    <div class="break"></div>
+                    <h6>About Us</h6>
+                    <%= post.about %>
                       <div class="break"></div>
-                      <h6>About Us</h6>
-                      <%= post.about %>
+                      <h6>What we are looking for to take our company to the next level?</h6>
+                      <%= post.looking %>
                         <div class="break"></div>
-                        <h6>What we are looking for to take our company to the next level?</h6>
-                        <%= post.looking %>
-                          <div class="break"></div>
-                          <h6>Contact Details</h6>
-                          <%= post.contact %>
-                            <%}%>
+                        <h6>Contact Details</h6>
+                        <%= post.contact %>
+                          <%}%>
       </div>
 
-      <div class="col-6 mt-5">
-        <a class="btn btn-primary" href="/profile">Return to Profile</a>
+      <div class="col-12 mt-5">
+        <h4>Reviews & Ratings</h4>
+
+        <% if (post.totalReviews> 0) { %>
+          <div class="mb-3">
+            <strong>Average Rating: <%= post.averageRating %> / 5</strong>
+            (<%= post.totalReviews %>
+              <%= post.totalReviews===1 ? 'review' : 'reviews' %>)
+          </div>
+          <% } else { %>
+            <p>No reviews yet. Be the first to review!</p>
+            <% } %>
+
+              <!-- Add Review Form -->
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5>Write a Review</h5>
+                  <form action="/post/<%= post.id %>/review" method="POST">
+                    <div class="mb-3">
+                      <label class="form-label">Rating</label>
+                      <div>
+                        <label><input type="radio" name="rating" value="5" required> ⭐⭐⭐⭐⭐ (5)</label><br>
+                        <label><input type="radio" name="rating" value="4"> ⭐⭐⭐⭐ (4)</label><br>
+                        <label><input type="radio" name="rating" value="3"> ⭐⭐⭐ (3)</label><br>
+                        <label><input type="radio" name="rating" value="2"> ⭐⭐ (2)</label><br>
+                        <label><input type="radio" name="rating" value="1"> ⭐ (1)</label>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="comment" class="form-label">Your Review</label>
+                      <textarea id="comment" name="comment" class="form-control" rows="3" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Display Reviews -->
+              <div class="reviews-list">
+                <% if (post.reviews && post.reviews.length> 0) { %>
+                  <h5>All Reviews</h5>
+                  <% post.reviews.reverse().forEach(review=> { %>
+                    <div class="card mb-3">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                          <div>
+                            <strong>
+                              <%= review.userName %>
+                            </strong>
+                            <div>
+                              <% for(let i=0; i < review.rating; i++) { %>⭐<% } %>
+                                  (<%= review.rating %>/5)
+                            </div>
+                          </div>
+                          <% if (review.user.toString()===user.id.toString()) { %>
+                            <form action="/post/<%= post.id %>/review/<%= review._id %>?_method=DELETE" method="POST">
+                              <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                            </form>
+                            <% } %>
+                        </div>
+                        <p class="mt-2">
+                          <%= review.comment %>
+                        </p>
+                        <small class="text-muted">
+                          <%= new Date(review.createdAt).toLocaleDateString() %>
+                        </small>
+                      </div>
+                    </div>
+                    <% }) %>
+                      <% } %>
+              </div>
+      </div>
+
+      <div class="row justify-content-center mt-5">
         <a class="btn btn-primary" href="/feed">All Companies</a>
       </div>
+
     </div>
   </div>
 
