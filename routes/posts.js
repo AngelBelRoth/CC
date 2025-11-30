@@ -4,7 +4,11 @@ const upload = require("../middleware/multer");
 const postsController = require("../controllers/posts");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
+
 //Post Routes - simplified for now
+
+router.get('/favorites', postsController.getFavorites);
+
 router.get("/:id", ensureAuth, postsController.getPost);
 
 router.post("/createPost", upload.single("file"), postsController.createPost);
@@ -15,8 +19,13 @@ router.post("/search", postsController.search);
 
 router.put("/likePost/:id", postsController.likePost);
 
-router.put("/favoritePost/:id", postsController.favoritePost);
-
 router.delete("/deletePost/:id", postsController.deletePost);
+
+// router.put("/favoritePost/:id", postsController.favoritePost);
+
+router.post("/:id/toggle-favorite", postsController.toggleFavorite);
+
+
+// router.get('/post/:id/is-favorited', postsController.isFavorited);
 
 module.exports = router;

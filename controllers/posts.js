@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const User = require("../models/User");
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -111,43 +112,138 @@ module.exports = {
     }
   },
   likePost: async (req, res) => {
+    // try {
+    //   await Post.findOneAndUpdate(
+    //     { _id: req.params.id },
+    //     {
+    //       $inc: { likes: 1 },
+    //     }
+    //   );
+    //   console.log("Likes +1");
+    //   res.redirect(`/post/${req.params.id}`);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
-      );
-      console.log("Likes +1");
+
+      const post = await Post.findById(req.params.id);
+      const userId = req.user._id;
+
+      // Already liked?
+      const alreadyLiked = post.likedBy.includes(userId);
+
+      if (!alreadyLiked) {
+        await Post.findOneAndUpdate(
+          { _id: req.params.id },
+          {
+            $inc: { likes: 1 },
+            $addToSet: { likedBy: userId } // prevents duplicates
+          }
+        )
+
+        console.log("User liked the post");
+      } else {
+         await Post.findOneAndUpdate(
+          { _id: req.params.id },
+          {
+            $inc: { likes: -1 },
+            $pull: { likedBy: userId }
+          }
+        ); 
+        console.log("User already liked this post");
+      }
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      res.redirect("/");
     }
   },
 
-  favoritePost: async (req, res) => {
-    if (req.user.favorite.includes(req.params.id)) {
-      req.user.favorite = req.user.favorite.filter(v => v !== req.params.id)
-    } else {
-      req.user.favorite.push(req.params.id)
+
+  deletePost: async (req, res) => {
+    try {
+      // Find post by id
+      let post = await Post.findById({ _id: req.params.id });
+      // Delete image from cloudinary
+      await cloudinary.uploader.destroy(post.cloudinaryId);
+      // Delete post from db
+      await Post.remove({ _id: req.params.id });
+      console.log("Deleted Post");
+      res.redirect("/profile");
+    } catch (err) {
+      res.redirect("/profile");
     }
-    res.redirect(`/post/${req.params.id}`);
   },
 
-deletePost: async (req, res) => {
-  try {
-    // Find post by id
-    let post = await Post.findById({ _id: req.params.id });
-    // Delete image from cloudinary
-    await cloudinary.uploader.destroy(post.cloudinaryId);
-    // Delete post from db
-    await Post.remove({ _id: req.params.id });
-    console.log("Deleted Post");
-    res.redirect("/profile");
-  } catch (err) {
-    res.redirect("/profile");
+ // favoritePost: async (req, res) => {
+  //   // if (req.user.favorite.includes(req.params.id)) {
+  //   //   req.user.favorite = req.user.favorite.filter(v => v !== req.params.id)
+  //   // } else {
+  //   //   req.user.favorite.push(req.params.id)
+  //   // }
+  //   // res.redirect(`/post/${req.params.id}`);
+  //   // console.log('favoritePost')
+  // },
+
+
+  toggleFavorite: async (req, res) => {
+    try {
+      const postId = req.params.id;
+      const userId = req.user._id;
+
+      // Verify post exists
+      const post = await Post.findById(postId);
+      if (!post) {
+        return res.status(404).json({ error: 'Post not found' });
+      }
+
+      // Check if already favorited
+      const isFavorited = req.user.favorites.includes(postId);
+
+      if (isFavorited) {
+        // Remove from favorites
+        await User.findByIdAndUpdate(
+          userId,
+          { $pull: { favorites: postId } },
+          { new: true }
+        );
+      } else {
+        // Add to favorites (prevents duplicates via $addToSet)
+        await User.findByIdAndUpdate(
+          userId,
+          { $addToSet: { favorites: postId } },
+          { new: true }
+        );
+      }
+      res.redirect(`/post/${req.params.id}`);
+    } catch (error) {
+      console.log(error)
+      res.status(500).json({ error: 'Failed to update favorite' });
+
+    } 
+  },
+
+  // Get user's favorites
+  getFavorites: async (req, res) => {
+    console.log('hello')
+    try {
+      const user = await User.findById(req.user._id).populate('favorites');
+       res.render("feed.ejs", { posts: user.favorites })
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to fetch favorites' });
+    }
+  },
+
+  // Check if post is favorited by user
+  isFavorited: async (req, res) => {
+    try {
+      const isFavorited = req.user.favorites.includes(req.params.id);
+      res.json({ isFavorited });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to check favorite' });
+    }
   }
-},
 };
 
 
