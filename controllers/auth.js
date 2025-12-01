@@ -122,20 +122,13 @@ exports.postSignup = (req, res, next) => {
           return next(err);
         }
 
-        // req.logIn(user, (err) => {
-        //   if (err) {
-        //     return next(err);
-        //   }
-        //   res.redirect("/profile");
-        // });
-
         // SEND ADMIN NOTIFICATION
         const { sendAdminNotification } = require("../utils/emailService");
         sendAdminNotification(user.userName, user.email, user.companyName, user.companyDescription);
 
         // DON'T AUTO-LOGIN - Show pending message instead
         req.flash("success", {
-          msg: "Account created! Your registration is pending admin approval. You will be able to login once approved."
+          msg: "Registration received! Your account is now under review. You will be able to login once approved. Questions? Contact angel.bel@myyahoo.com"
         });
         res.redirect("/login");
       });
