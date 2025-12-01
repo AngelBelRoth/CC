@@ -343,6 +343,11 @@ h6 {
     font-size: 2rem;
 }
 
+.admin {
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, #AB8B27, #D4AF37, #E1C447);
+}
+
 .break {
     height: 20px;
 }

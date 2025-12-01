@@ -55,6 +55,8 @@ const sendRejectionEmail = async (userEmail, userName) => {
 };
 
 // Send new registration notification to admin
+// In utils/emailService.js, update sendAdminNotification:
+
 const sendAdminNotification = async (userName, userEmail) => {
   const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USER;
   
@@ -70,7 +72,11 @@ const sendAdminNotification = async (userName, userEmail) => {
         <li><strong>Email:</strong> ${userEmail}</li>
         <li><strong>Registration Time:</strong> ${new Date().toLocaleString()}</li>
       </ul>
-      <p><a href="${process.env.BASE_URL || 'http://localhost:3000'}/admin/pending-users">Click here to review pending users</a></p>
+      <p><strong>To review this user:</strong></p>
+      <ol>
+        <li>Login to your admin account at <a href="${process.env.BASE_URL || 'http://localhost:8000'}/login">${process.env.BASE_URL || 'http://localhost:8000'}/login</a></li>
+        <li>Go to Admin Panel > Pending Users</li>
+      </ol>
     `
   };
 

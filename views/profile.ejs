@@ -1,4 +1,7 @@
 <%- include('partials/header') -%>
+
+
+
   <div class="container">
     <div class="row mt-5">
       <div class="col-6">
@@ -88,11 +91,17 @@
       <div class="col-6">
 
         <div class="user">
+
           <p class="user-name"><strong></strong>
             <%= user.userName %>
           </p>
           <!-- <p><strong>Email</strong>: <%= user.email %></p> -->
-          <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+
+          <% if (user && user.isAdmin) { %>
+            <a href="/admin/pending-users" class="btn btn-primary admin">Admin Panel</a>
+            <% } %>
+
+              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
         </div>
 
         <ul class="row list-unstyled profile">
