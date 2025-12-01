@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -10,12 +8,14 @@ const methodOverride = require("method-override");
 const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
+
+//Use .env file in config folder
+require("dotenv").config({ path: "./config/.env" });
+
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 const adminRoutes = require("./routes/admin");
 
-//Use .env file in config folder
-require("dotenv").config({ path: "./config/.env" });
 
 // Passport config
 require("./config/passport")(passport);

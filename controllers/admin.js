@@ -54,6 +54,7 @@ module.exports = {
   getAllUsers: async (req, res) => {
     try {
       const users = await User.find().sort({ requestedAt: -1 });
+      console.log(req.user)
       res.render("admin/all-users.ejs", { users: users, user: req.user });
     } catch (err) {
       console.log(err);

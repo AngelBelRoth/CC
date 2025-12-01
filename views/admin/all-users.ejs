@@ -38,7 +38,11 @@
               <td><%= new Date(u.requestedAt).toLocaleDateString() %></td>
               <td>
                 <form action="/admin/toggle-admin/<%= u._id %>" method="POST" style="display: inline;">
-                  <button class="btn btn-sm btn-info" type="submit">
+                  <% if (u._id.equals(user._id)) { %>
+                  <button class="btn btn-sm btn-info" type="submit" disabled>
+                    <%} else {%>
+                      <button class="btn btn-sm btn-info" type="submit">
+                      <%}%>
                     <%= u.isAdmin ? 'Remove Admin' : 'Make Admin' %>
                   </button>
                 </form>

@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer');
 
+
 // Configure email transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail', // or 'outlook', 'yahoo', etc.
   auth: {
-    user: process.env.EMAIL_USER, // Your email
-    pass: process.env.EMAIL_PASSWORD // Your email password or app password
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
   }
 });
 
@@ -19,7 +20,7 @@ const sendApprovalEmail = async (userEmail, userName) => {
       <h2>Welcome, ${userName}!</h2>
       <p>Great news! Your account has been approved by our admin team.</p>
       <p>You can now login and start using our platform.</p>
-      <p><a href="${process.env.BASE_URL || 'http://localhost:3000'}/login">Click here to login</a></p>
+      <p><a href="${process.env.BASE_URL || 'http://localhost:8000'}/login">Click here to login</a></p>
       <p>Thank you for joining us!</p>
     `
   };
