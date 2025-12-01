@@ -57,7 +57,7 @@ const sendRejectionEmail = async (userEmail, userName) => {
 // Send new registration notification to admin
 // In utils/emailService.js, update sendAdminNotification:
 
-const sendAdminNotification = async (userName, userEmail) => {
+const sendAdminNotification = async (userName, userEmail, companyName, companyDescription) => {
   const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USER;
   
   const mailOptions = {
