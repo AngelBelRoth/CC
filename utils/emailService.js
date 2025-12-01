@@ -90,4 +90,33 @@ const sendAdminNotification = async (userName, userEmail, companyName, companyDe
   }
 };
 
-module.exports = { sendApprovalEmail, sendRejectionEmail, sendAdminNotification };
+const sendPasswordResetEmail = async (userEmail, userName, resetToken) => {
+  const resetUrl = `${process.env.BASE_URL || 'http://localhost:8000'}/reset-password/${resetToken}`;
+  
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: userEmail,
+    subject: 'Password Reset Request',
+    html: `
+      <h2>Hello ${userName},</h2>
+      <p>You requested to reset your password.</p>
+      <p>Please click the link below to reset your password:</p>
+      <p><a href="${resetUrl}" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Reset Password</a></p>
+      <p>Or copy and paste this link into your browser:</p>
+      <p>${resetUrl}</p>
+      <p><strong>This link will expire in 1 hour.</strong></p>
+      <p>If you didn't request this, please ignore this email.</p>
+      <hr>
+      <p>Questions? Contact us at: <a href="mailto:angel.bel@myyahoo.com">angel.bel@myyahoo.com</a></p>
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('Password reset email sent to:', userEmail);
+  } catch (error) {
+    console.error('Error sending password reset email:', error);
+  }
+};
+
+module.exports = { sendApprovalEmail, sendRejectionEmail, sendAdminNotification, sendPasswordResetEmail };

@@ -1,6 +1,8 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const crypto = require('crypto');
+const { sendPasswordResetEmail } = require("../utils/emailService");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -134,4 +136,106 @@ exports.postSignup = (req, res, next) => {
       });
     }
   );
+};
+
+exports.getForgotPassword = (req, res) => {
+  res.render("forgot-password.ejs");
+},
+
+exports.postForgotPassword = async (req, res) => {
+  const validationErrors = [];
+  if (!validator.isEmail(req.body.email))
+    validationErrors.push({ msg: "Please enter a valid email address." });
+
+  if (validationErrors.length) {
+    req.flash("errors", validationErrors);
+    return res.redirect("/forgot-password");
+  }
+
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    
+    if (!user) {
+      req.flash("errors", { msg: "No account with that email address exists." });
+      return res.redirect("/forgot-password");
+    }
+
+    // Generate reset token
+    const token = crypto.randomBytes(20).toString('hex');
+    
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    
+    await user.save();
+    
+    // Send email
+    await sendPasswordResetEmail(user.email, user.userName, token);
+    
+    req.flash("success", { 
+      msg: "An email has been sent to " + user.email + " with further instructions." 
+    });
+    res.redirect("/forgot-password");
+  } catch (err) {
+    console.log(err);
+    req.flash("errors", { msg: "Error processing request. Please try again." });
+    return res.redirect("/forgot-password");
+  }
+},
+
+exports.getResetPassword = async (req, res) => {
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: req.params.token,
+      resetPasswordExpires: { $gt: Date.now() }
+    });
+
+    if (!user) {
+      req.flash("errors", { msg: "Password reset token is invalid or has expired." });
+      return res.redirect("/forgot-password");
+    }
+
+    res.render("reset-password.ejs", { token: req.params.token });
+  } catch (err) {
+    console.log(err);
+    res.redirect("/forgot-password");
+  }
+},
+
+exports.postResetPassword = async (req, res) => {
+  const validationErrors = [];
+  
+  if (!validator.isLength(req.body.password, { min: 8 }))
+    validationErrors.push({ msg: "Password must be at least 8 characters long" });
+  if (req.body.password !== req.body.confirmPassword)
+    validationErrors.push({ msg: "Passwords do not match" });
+
+  if (validationErrors.length) {
+    req.flash("errors", validationErrors);
+    return res.redirect(`/reset-password/${req.params.token}`);
+  }
+
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: req.params.token,
+      resetPasswordExpires: { $gt: Date.now() }
+    });
+
+    if (!user) {
+      req.flash("errors", { msg: "Password reset token is invalid or has expired." });
+      return res.redirect("/forgot-password");
+    }
+
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    await user.save();
+
+    req.flash("success", { msg: "Success! Your password has been changed. You can now login." });
+    res.redirect("/login");
+  } catch (err) {
+    console.log(err);
+    req.flash("errors", { msg: "Error resetting password. Please try again." });
+    res.redirect("/forgot-password");
+  }
 };

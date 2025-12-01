@@ -7,6 +7,8 @@ const UserSchema = new mongoose.Schema({
   companyDescription: { type: String },
   email: { type: String, unique: true },
   password: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
   favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
   isApproved: { type: Boolean, default: false },
   isAdmin: { type: Boolean, default: false },
