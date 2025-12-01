@@ -348,6 +348,16 @@ h6 {
     background: linear-gradient(90deg, #AB8B27, #D4AF37, #E1C447);
 }
 
+.signup {
+    margin-bottom: 80px;
+}
+
+.register {
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .break {
     height: 20px;
 }

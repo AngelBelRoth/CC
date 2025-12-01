@@ -35,7 +35,7 @@ exports.postLogin = (req, res, next) => {
       return res.redirect("/login");
     }
 
-     // CHECK IF USER IS APPROVED
+    // CHECK IF USER IS APPROVED
     if (!user.isApproved) {
       req.flash("errors", { msg: "Your account is pending admin approval. Please wait for approval." });
       return res.redirect("/login");
@@ -83,6 +83,11 @@ exports.postSignup = (req, res, next) => {
   if (req.body.password !== req.body.confirmPassword)
     validationErrors.push({ msg: "Passwords do not match" });
 
+  if (!req.body.companyName || req.body.companyName.trim() === '')
+    validationErrors.push({ msg: "Company name is required" });
+  if (!req.body.companyDescription || req.body.companyDescription.trim() === '')
+    validationErrors.push({ msg: "Company description is required" });
+
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
     return res.redirect("../signup");
@@ -93,6 +98,8 @@ exports.postSignup = (req, res, next) => {
 
   const user = new User({
     userName: req.body.userName,
+    companyName: req.body.companyName,
+    companyDescription: req.body.companyDescription,
     email: req.body.email,
     password: req.body.password,
     isApproved: false
@@ -124,11 +131,11 @@ exports.postSignup = (req, res, next) => {
 
         // SEND ADMIN NOTIFICATION
         const { sendAdminNotification } = require("../utils/emailService");
-        sendAdminNotification(user.userName, user.email);
-        
+        sendAdminNotification(user.userName, user.email, user.companyName, user.companyDescription);
+
         // DON'T AUTO-LOGIN - Show pending message instead
-        req.flash("success", { 
-          msg: "Account created! Your registration is pending admin approval. You will be able to login once approved." 
+        req.flash("success", {
+          msg: "Account created! Your registration is pending admin approval. You will be able to login once approved."
         });
         res.redirect("/login");
       });

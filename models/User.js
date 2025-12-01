@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
+  companyName: { type: String },
+  companyDescription: { type: String },
   email: { type: String, unique: true },
   password: String,
   favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],

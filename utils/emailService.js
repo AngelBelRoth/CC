@@ -69,6 +69,8 @@ const sendAdminNotification = async (userName, userEmail) => {
       <p>A new user has registered and is waiting for approval:</p>
       <ul>
         <li><strong>Username:</strong> ${userName}</li>
+        <li><strong>Company Name:</strong> ${companyName}</li>
+        <li><strong>Company Description:</strong> ${companyDescription}</li>
         <li><strong>Email:</strong> ${userEmail}</li>
         <li><strong>Registration Time:</strong> ${new Date().toLocaleString()}</li>
       </ul>
