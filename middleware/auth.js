@@ -13,4 +13,11 @@ module.exports = {
       res.redirect("/dashboard");
     }
   },
+  ensureAdmin: function (req, res, next) {
+    if (req.isAuthenticated() && req.user.isAdmin) {
+      return next();
+    } else {
+      res.redirect("/profile");
+    }
+  }
 };

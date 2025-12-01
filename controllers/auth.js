@@ -34,6 +34,13 @@ exports.postLogin = (req, res, next) => {
       req.flash("errors", info);
       return res.redirect("/login");
     }
+
+     // CHECK IF USER IS APPROVED
+    if (!user.isApproved) {
+      req.flash("errors", { msg: "Your account is pending admin approval. Please wait for approval." });
+      return res.redirect("/login");
+    }
+
     req.logIn(user, (err) => {
       if (err) {
         return next(err);
@@ -88,6 +95,7 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    isApproved: false
   });
 
   User.findOne(
@@ -106,12 +114,23 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        req.logIn(user, (err) => {
-          if (err) {
-            return next(err);
-          }
-          res.redirect("/profile");
+
+        // req.logIn(user, (err) => {
+        //   if (err) {
+        //     return next(err);
+        //   }
+        //   res.redirect("/profile");
+        // });
+
+        // SEND ADMIN NOTIFICATION
+        const { sendAdminNotification } = require("../utils/emailService");
+        sendAdminNotification(user.userName, user.email);
+        
+        // DON'T AUTO-LOGIN - Show pending message instead
+        req.flash("success", { 
+          msg: "Account created! Your registration is pending admin approval. You will be able to login once approved." 
         });
+        res.redirect("/login");
       });
     }
   );

@@ -1,0 +1,46 @@
+<%- include('../partials/header') -%>
+
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-8">
+      <h2>Pending User Approvals</h2>
+      
+      <% if (users.length === 0) { %>
+        <p>No pending users to approve.</p>
+      <% } else { %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Requested At</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(u => { %>
+              <tr>
+                <td><%= u.userName %></td>
+                <td><%= u.email %></td>
+                <td><%= new Date(u.requestedAt).toLocaleDateString() %></td>
+                <td>
+                  <form action="/admin/approve-user/<%= u._id %>" method="POST" style="display: inline;">
+                    <button class="btn btn-success btn-sm" type="submit">Approve</button>
+                  </form>
+                  <form action="/admin/reject-user/<%= u._id %>" method="POST" style="display: inline;">
+                    <button class="btn btn-danger btn-sm" type="submit">Reject</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+      
+      <a class="btn btn-primary mt-3" href="/admin/all-users">View All Users</a>
+      <a class="btn btn-secondary mt-3" href="/profile">Back to Profile</a>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') -%>

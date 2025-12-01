@@ -6,6 +6,9 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String,
   favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+  isApproved: { type: Boolean, default: false },
+  isAdmin: { type: Boolean, default: false },
+  requestedAt: { type: Date, default: Date.now }
 });
 
 // Password hash middleware.
