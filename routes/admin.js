@@ -9,3 +9,5 @@ router.post("/approve-user/:id", ensureAuth, ensureAdmin, adminController.approv
 router.post("/reject-user/:id", ensureAuth, ensureAdmin, adminController.rejectUser);
 router.get("/all-users", ensureAuth, ensureAdmin, adminController.getAllUsers);
 router.post("/toggle-admin/:id", ensureAuth, ensureAdmin, adminController.toggleAdmin);
+
+module.exports = router; 
