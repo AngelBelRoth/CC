@@ -107,10 +107,6 @@ section.col-6 {
     color: #064b48;
 }
 
-/* .alert-success{
-    height: 50vh;
-} */
-
 .alert-container {
   position: fixed;
   top: 0;
@@ -120,8 +116,6 @@ section.col-6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* pointer-events: none;
-  z-index: 9999; */
 }
 
 /* ----------------------------------------------------

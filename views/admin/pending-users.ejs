@@ -32,9 +32,36 @@
                     <td>
                       <%= u.companyName || 'N/A' %>
                     </td>
+                    <!-- <td style="max-width: 300px; white-space: normal;">
+                      <%= u.companyDescription || 'N/A' %>
+                    </td> -->
+
                     <td>
-                      <%= u.companyDescription ? u.companyDescription.substring(0, 50) + '...' : 'N/A' %>
+                      <% if (u.companyDescription) { %>
+                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#desc-<%= u._id %>">
+                          View Description
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="desc-<%= u._id %>" tabindex="-1">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Company Description - <%= u.companyName || u.userName %>
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                              </div>
+                              <div class="modal-body">
+                                <%= u.companyDescription %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <% } else { %>
+                          N/A
+                          <% } %>
                     </td>
+
                     <td>
                       <%= new Date(u.requestedAt).toLocaleDateString() %>
                     </td>
