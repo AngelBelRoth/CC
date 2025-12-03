@@ -63,6 +63,17 @@
               </div>
 
               <div class="mb-3">
+                <label for="therapy" class="form-label">
+                  <% if (post.businessType==="fb" ) { %>
+                    <input id="therapy" name="businessType" value="therapy" type="radio" class="" checked />
+                    <%} else {%>
+                      <input id="therapy" name="businessType" value="therapy" type="radio" class="" />
+                      <%}%>
+                        Healing / Therapy
+                </label>
+              </div>
+
+              <div class="mb-3">
                 <label for="software" class="form-label">
                   <% if (post.businessType==="software" ) { %>
                     <input id="software" name="businessType" value="software" type="radio" class="" checked />

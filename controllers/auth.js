@@ -130,7 +130,7 @@ exports.postSignup = (req, res, next) => {
 
         // DON'T AUTO-LOGIN - Show pending message instead
         req.flash("success", {
-          msg: "Registration received! Your account is now under review. You will be able to login once approved. Questions? Contact angel.bel@myyahoo.com"
+          msg: "Registration received! Your account is now under review. You will be able to login once approved. Questions? Contact connect.community@yahoo.com"
         });
         res.redirect("/login");
       });

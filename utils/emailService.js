@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 
 // Configure email transporter
 const transporter = nodemailer.createTransport({
-  service: 'gmail', // or 'outlook', 'yahoo', etc.
+  service: 'gmail', 
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD
@@ -55,8 +55,6 @@ const sendRejectionEmail = async (userEmail, userName) => {
   }
 };
 
-// Send new registration notification to admin
-// In utils/emailService.js, update sendAdminNotification:
 
 const sendAdminNotification = async (userName, userEmail, companyName, companyDescription) => {
   const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USER;
@@ -108,7 +106,7 @@ const sendPasswordResetEmail = async (userEmail, userName, resetToken) => {
       <p><strong>This link will expire in 1 hour.</strong></p>
       <p>If you didn't request this, please ignore this email.</p>
       <hr>
-      <p>Questions? Contact us at: <a href="mailto:angel.bel@myyahoo.com">angel.bel@myyahoo.com</a></p>
+      <p>Questions? Contact us at: <a href="mailto:connect.community@yahoo.com">connect.community@yahoo.com</a></p>
     `
   };
 

@@ -29,7 +29,7 @@
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" name="password" />
                           </div>
-                          
+
                           <button type="submit" class="btn btn-primary">Submit</button>
                           <a href="/forgot-password" class="btn btn-link">Forgot Password?</a>
                         </form>
@@ -38,13 +38,15 @@
   </main>
 
   <% if (locals.messages.success) { %>
-    <% messages.success.forEach( el=> { %>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <h5>Registration Successful!</h5>
-        <%= el.msg %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      </div>
-      <% }) %>
-        <% } %>
+    <div class="alert-container">
+      <% messages.success.forEach( el=> { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <h5>Registration Successful!</h5>
+          <%= el.msg %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <% }) %>
+    </div>
+    <% } %>
 
-          <%- include('partials/footer') -%>
+      <%- include('partials/footer') -%>
