@@ -847,13 +847,6 @@ h6 {
     padding-left: 5%;
 }
 
-.check-bio {
-    margin: 4% 0 2% 0;
-    padding-right: 5%;
-    text-align: end;
-}
-
-
 .select, .find-match {
     text-align: center;
     margin-top: 4%;
@@ -863,6 +856,12 @@ h6 {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.check-bio {
+    margin: 4% 0 2% 0;
+    padding-right: 5%;
+    text-align: end;
 }
 
 .index-one {
