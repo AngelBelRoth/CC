@@ -1,23 +1,40 @@
 /* ----------------------------------------------------
-   GLOBAL THEME — Gradient Teal Palette
+   GLOBAL THEME – Gradient Teal Palette
 ---------------------------------------------------- */
 :root {
     --teal-light: #7fe7dd;
     --teal-mid: #2db6b1;
     --teal-dark: #0a7c7b;
     --teal-gradient: linear-gradient(135deg, #7fe7dd, #2db6b1, #0a7c7b);
+    --gold-gradient: linear-gradient(90deg, #AB8B27, #D4AF37, #E1C447);
     --text-dark: #0f2f2e;
     --text-light: #ffffff;
     --bg-soft: #f3fafa;
+    --danger-red: #ff6b6b;
 }
 
-/* General Layout */
+/* ----------------------------------------------------
+   GENERAL LAYOUT
+---------------------------------------------------- */
 body {
     font-family: "Inter", sans-serif;
     background: var(--bg-soft);
     color: var(--text-dark);
     margin: 0;
     padding: 0;
+}
+
+main.container {
+    margin-top: 3rem;
+}
+
+a {
+    color: var(--teal-dark);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--teal-mid);
 }
 
 /* ----------------------------------------------------
@@ -33,6 +50,7 @@ header h1 a {
     font-weight: 700;
     background: var(--teal-gradient);
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -42,371 +60,9 @@ header span {
     font-weight: 500;
 }
 
-
 /* ----------------------------------------------------
-   FORM CARD STYLE
+   NAVIGATION BAR
 ---------------------------------------------------- */
-section.col-6 {
-    background: #ffffff;
-    padding: 2rem 2.5rem;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    border-top: 6px solid var(--teal-mid);
-}
-
-/* Form Labels */
-.form-label {
-    font-weight: 600;
-    color: var(--teal-dark);
-}
-
-/* Inputs */
-.form-control {
-    border-radius: 10px;
-    border: 1px solid #cde8e7;
-    padding: 0.7rem 1rem;
-}
-
-.form-control:focus {
-    border-color: var(--teal-mid);
-    box-shadow: 0 0 0 0.2rem rgba(45, 182, 177, 0.25);
-}
-
-/* ----------------------------------------------------
-   BUTTONS
----------------------------------------------------- */
-.btn-primary {
-    background: var(--teal-gradient);
-    border: none;
-    border-radius: 10px;
-    padding: 0.65rem 1.4rem;
-    font-weight: 600;
-    /* color: white; */
-    transition: 0.2s ease-in-out;
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(45, 182, 177, 0.35);
-}
-
-/* ----------------------------------------------------
-   ALERTS
----------------------------------------------------- */
-.alert-danger {
-    background: #ffdddd;
-    border-left: 6px solid #ff6b6b;
-    border-radius: 8px;
-    color: #7a0000;
-}
-
-.alert-info {
-    background: var(--teal-light);
-    border-left: 6px solid var(--teal-mid);
-    border-radius: 8px;
-    color: #064b48;
-}
-
-.alert-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ----------------------------------------------------
-   EXTRA POLISH
----------------------------------------------------- */
-main.container {
-    margin-top: 3rem;
-}
-
-a {
-    color: var(--teal-dark);
-    text-decoration: none;
-}
-
-a:hover {
-    color: var(--teal-mid);
-}
-
-
-
-
-/* --------------------------------------
-   FEED PAGE STYLING
---------------------------------------- */
-
-.feed-search form {
-    background: #ffffff;
-    padding: 1.5rem 2rem;
-    border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
-}
-
-ul.post-grid li {
-    transition: 0.25s ease;
-    cursor: pointer;
-}
-
-ul.post-grid li img {
-    border-radius: 14px;
-    width: 100%;
-    object-fit: cover;
-    transition: 0.3s ease;
-}
-
-ul.post-grid li:hover img {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(45, 182, 177, 0.25);
-}
-
-ul.post-grid li h6 {
-    margin-top: 0.6rem;
-    font-weight: 600;
-    text-align: center;
-    color: var(--teal-dark);
-}
-
-
-/* =============================
-   FEED SEARCH BAR (div.bar)
-   ============================= */
-.bar {
-    background: #ffffff;
-    padding: 2rem 2.5rem;
-    border-radius: 18px;
-    border-top: 6px solid var(--teal-mid);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    margin-bottom: 3rem;
-}
-
-/* Form spacing inside bar */
-.bar form .mb-3 {
-    margin-bottom: 1rem;
-}
-
-/* Label row (keeps radio + text aligned) */
-.bar form .form-label {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-weight: 600;
-    color: var(--teal-dark);
-}
-
-/* Radio buttons clean + teal glow on focus */
-.bar input[type="radio"] {
-    transform: scale(1.15);
-    accent-color: var(--teal-mid);
-    /* native teal radio */
-}
-
-/* Search button styling */
-.bar button {
-    margin-top: 0.8rem;
-    width: 100%;
-    border-radius: 10px;
-    padding: 0.7rem;
-    font-weight: 600;
-    background: var(--teal-gradient);
-    color: #fff;
-    border: none;
-    transition: 0.25s ease;
-}
-
-.bar button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(45, 182, 177, 0.35);
-}
-
-
-/* --------------------------------------
-   INDIVIDUAL POST PAGE
---------------------------------------- */
-
-.post-image {
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-.post-info h6 {
-    font-weight: 700;
-    color: var(--teal-dark);
-    margin-top: 1rem;
-}
-
-.like-section button {
-    font-size: 1.2rem;
-    border-radius: 50px;
-    padding: 0.5rem 1rem;
-}
-
-/* --------------------------------------
-   PROFILE PAGE
---------------------------------------- */
-
-.profile-header strong {
-    color: var(--teal-dark);
-    font-weight: 700;
-}
-
-.profile-posts img {
-    border-radius: 14px;
-    transition: 0.25s ease;
-}
-
-.profile-posts img:hover {
-    transform: scale(1.04);
-}
-
-
-/* ------------------------------------------
-   Universal Styling for: ul.row.list-unstyled
-------------------------------------------- */
-ul.row.list-unstyled {
-    flex-direction: flex;
-    justify-content: space-evenly;
-    margin-top: 50px
-}
-
-ul.row.list-unstyled>li {
-    position: relative;
-    flex: 0 0 calc(20% - 20px) !important;
-    max-width: calc(20% - 20px) !important;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-}
-
-ul.row.list-unstyled>li a {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-ul.row.list-unstyled>li img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-    transition: 0.3s ease-in-out;
-}
-
-ul.row.list-unstyled>li h6 {
-    margin: 0.6rem 0 0 0;
-    padding: 0;
-    font-weight: 600;
-    font-size: 0.875rem;
-    text-align: center;
-    color: var(--teal-dark);
-}
-
-ul.row.list-unstyled.profile {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-end;
-    justify-content: space-between;
-}
-
-ul.row.list-unstyled.profile>li {
-    flex: 0 0 50% !important;
-    max-width: 50% !important;
-}
-
-.row.justify-content-between {
-    margin: 20px 0;
-}
-
-h2 {
-    color: var(--teal-dark);
-    font-size: 2.8rem;
-}
-
-h3,
-h5,
-h6 {
-    color: teal;
-}
-
-.business-type {
-    color: teal;
-    font-weight: 600;
-    margin: 25px 0 20px 0;
-}
-
-.user {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.user-name {
-    background: linear-gradient(90deg, #AB8B27, #D4AF37, #E1C447);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2rem;
-}
-
-.admin {
-    margin-bottom: 30px;
-    background: linear-gradient(90deg, #AB8B27, #D4AF37, #E1C447);
-}
-
-.signup {
-    margin-bottom: 80px;
-}
-
-.register {
-    padding-top: 15px;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.break {
-    height: 20px;
-}
-
-.space {
-    width: 100%;
-    height: 10vh;
-}
-
-.space-index {
-    width: 100%;
-    height: 10vh;
-}
-
-.cc-logo {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-}
-
-.cc-logo img{
-    width: 20%;
-}
-
-.ab {
-    text-align: center;
-    margin-top: 80px;
-    font-family: cursive;
-}
-
-.design {
-    font-family: cursive;
-}
-
-
-/* Navigation Bar Styling */
 .navbar {
     background: #ffffff;
     padding: 1rem 2rem;
@@ -441,7 +97,7 @@ h6 {
     padding: 0.5rem 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     text-decoration: none;
     font-size: 0.9rem;
     display: inline-flex;
@@ -458,13 +114,13 @@ h6 {
 }
 
 .nav-btn.favorites {
-    border-color: #ff6b6b;
-    color: #ff6b6b;
+    border-color: var(--danger-red);
+    color: var(--danger-red);
 }
 
 .nav-btn.favorites:hover {
     background: linear-gradient(135deg, #ff6b6b, #ff5252);
-    border-color: #ff6b6b;
+    border-color: var(--danger-red);
     color: white;
 }
 
@@ -521,7 +177,7 @@ h6 {
     font-weight: 600;
     color: white;
     cursor: pointer;
-    transition: 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     font-size: 0.9rem;
     white-space: nowrap;
 }
@@ -531,8 +187,382 @@ h6 {
     box-shadow: 0 6px 12px rgba(45, 182, 177, 0.35);
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
+/* ----------------------------------------------------
+   FORM CARD STYLE
+---------------------------------------------------- */
+section.col-6 {
+    background: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    border-top: 6px solid var(--teal-mid);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--teal-dark);
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #cde8e7;
+    padding: 0.7rem 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--teal-mid);
+    box-shadow: 0 0 0 0.2rem rgba(45, 182, 177, 0.25);
+}
+
+/* ----------------------------------------------------
+   BUTTONS
+---------------------------------------------------- */
+.btn-primary {
+    background: var(--teal-gradient);
+    border: none;
+    border-radius: 10px;
+    padding: 0.65rem 1.4rem;
+    font-weight: 600;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(45, 182, 177, 0.35);
+}
+
+/* ----------------------------------------------------
+   ALERTS
+---------------------------------------------------- */
+.alert-danger {
+    background: #ffdddd;
+    border-left: 6px solid var(--danger-red);
+    border-radius: 8px;
+    color: #7a0000;
+}
+
+.alert-info {
+    background: var(--teal-light);
+    border-left: 6px solid var(--teal-mid);
+    border-radius: 8px;
+    color: #064b48;
+}
+
+.alert-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.alert-container>* {
+    pointer-events: auto;
+}
+
+/* ----------------------------------------------------
+   FEED PAGE STYLING
+---------------------------------------------------- */
+.feed-search form {
+    background: #ffffff;
+    padding: 1.5rem 2rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.bar {
+    background: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 18px;
+    border-top: 6px solid var(--teal-mid);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+}
+
+.bar form .mb-3 {
+    margin-bottom: 1rem;
+}
+
+.bar form .form-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    color: var(--teal-dark);
+}
+
+.bar input[type="radio"] {
+    transform: scale(1.15);
+    accent-color: var(--teal-mid);
+}
+
+.bar button {
+    margin-top: 0.8rem;
+    width: 100%;
+    border-radius: 10px;
+    padding: 0.7rem;
+    font-weight: 600;
+    background: var(--teal-gradient);
+    color: #fff;
+    border: none;
+    transition: all 0.25s ease;
+}
+
+.bar button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(45, 182, 177, 0.35);
+}
+
+/* ----------------------------------------------------
+   POST GRID
+---------------------------------------------------- */
+ul.post-grid {
+    list-style: none;
+    padding: 0;
+}
+
+ul.post-grid li {
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+ul.post-grid li img {
+    border-radius: 14px;
+    width: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+ul.post-grid li:hover img {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(45, 182, 177, 0.25);
+}
+
+ul.post-grid li h6 {
+    margin-top: 0.6rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--teal-dark);
+}
+
+/* ----------------------------------------------------
+   UNIVERSAL GRID LAYOUT (Feed & Profile)
+---------------------------------------------------- */
+ul.row.list-unstyled {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 50px;
+    list-style: none;
+    padding: 0;
+}
+
+ul.row.list-unstyled>li {
+    position: relative;
+    flex: 0 0 calc(20% - 20px);
+    max-width: calc(20% - 20px);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+ul.row.list-unstyled>li a {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: block;
+}
+
+ul.row.list-unstyled>li img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+ul.row.list-unstyled>li img:hover {
+    transform: scale(1.04);
+}
+
+ul.row.list-unstyled>li h6 {
+    margin: 0.6rem 0 0 0;
+    padding: 0;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-align: center;
+    color: var(--teal-dark);
+}
+
+/* Profile Grid Variant */
+ul.row.list-unstyled.profile {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+ul.row.list-unstyled.profile>li {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+/* ----------------------------------------------------
+   INDIVIDUAL POST PAGE
+---------------------------------------------------- */
+.post-image {
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.post-info h6 {
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-top: 1rem;
+}
+
+.like-section button {
+    font-size: 1.2rem;
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+}
+
+/* ----------------------------------------------------
+   PROFILE PAGE
+---------------------------------------------------- */
+.profile-header strong {
+    color: var(--teal-dark);
+    font-weight: 700;
+}
+
+.profile-posts img {
+    border-radius: 14px;
+    transition: all 0.25s ease;
+}
+
+.profile-posts img:hover {
+    transform: scale(1.04);
+}
+
+/* ----------------------------------------------------
+   TYPOGRAPHY & SPACING
+---------------------------------------------------- */
+h2 {
+    color: var(--teal-dark);
+    font-size: 2.8rem;
+}
+
+h3,
+h5,
+h6 {
+    color: teal;
+}
+
+.business-type {
+    color: teal;
+    font-weight: 600;
+    margin: 25px 0 20px 0;
+}
+
+.row.justify-content-between {
+    margin: 20px 0;
+}
+
+.break {
+    height: 20px;
+}
+
+.space {
+    width: 100%;
+    height: 10vh;
+}
+
+.space-index {
+    width: 100%;
+    height: 10vh;
+}
+
+/* ----------------------------------------------------
+   USER SECTION
+---------------------------------------------------- */
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.user-name {
+    background: var(--gold-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2rem;
+}
+
+.admin {
+    margin-bottom: 30px;
+    background: var(--gold-gradient);
+}
+
+/* ----------------------------------------------------
+   SIGNUP & REGISTRATION
+---------------------------------------------------- */
+.signup {
+    margin-bottom: 80px;
+}
+
+.register {
+    padding-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ----------------------------------------------------
+   LOGO & FOOTER
+---------------------------------------------------- */
+.cc-logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.cc-logo img {
+    width: 20%;
+    max-width: 200px;
+}
+
+.ab {
+    text-align: center;
+    padding: 20px;
+    font-family: cursive;
+}
+
+.design {
+    font-family: cursive;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+============================================================ */
+
+/* Desktop/Laptop (1200px - 1399px) */
+@media (max-width: 1399px) {
+    header h1 a {
+        font-size: 4rem;
+    }
+}
+
+/* Tablets & Small Laptops (992px - 1199px) */
+@media (max-width: 1199px) {
     .navbar-container {
         flex-wrap: wrap;
     }
@@ -542,9 +572,24 @@ h6 {
         width: 100%;
         justify-content: flex-start;
     }
+
+    ul.row.list-unstyled>li {
+        flex: 0 0 calc(25% - 20px);
+        max-width: calc(25% - 20px);
+    }
+
+    header h1 a {
+        font-size: 3.5rem;
+    }
 }
 
-@media (max-width: 768px) {
+/* Tablets Portrait (768px - 991px) */
+@media (max-width: 991px) {
+    ul.row.list-unstyled>li {
+        flex: 0 0 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
+    }
+
     .navbar-container {
         flex-direction: column;
         align-items: stretch;
@@ -553,6 +598,7 @@ h6 {
     .navbar-actions {
         justify-content: center;
         width: 100%;
+        flex-wrap: wrap;
     }
 
     .navbar-right {
@@ -575,5 +621,278 @@ h6 {
 
     .nav-btn {
         flex: 1;
+        min-width: 120px;
+    }
+
+    section.col-6 {
+        padding: 1.5rem;
+    }
+
+    .cc-logo img {
+        width: 30%;
     }
 }
+
+/* Mobile Landscape (576px - 767px) */
+@media (max-width: 767px) {
+    header h1 a {
+        font-size: 2.5rem;
+    }
+
+    header span {
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .user-name {
+        font-size: 1.5rem;
+    }
+
+    ul.row.list-unstyled>li {
+        flex: 0 0 calc(50% - 15px);
+        max-width: calc(50% - 15px);
+    }
+
+    ul.row.list-unstyled.profile>li {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    ul.row.list-unstyled.profile {
+        flex-direction: column;
+    }
+
+    .navbar {
+        padding: 1rem;
+        margin-top: 30px;
+    }
+
+    .bar {
+        padding: 1.5rem;
+    }
+
+    .cc-logo img {
+        width: 40%;
+    }
+}
+
+/* Mobile Portrait (up to 575px) */
+@media (max-width: 575px) {
+    header h1 a {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    .user-name {
+        font-size: 1.25rem;
+    }
+
+    ul.row.list-unstyled {
+        margin-top: 30px;
+    }
+
+    ul.row.list-unstyled>li {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    section.col-6 {
+        padding: 1rem;
+    }
+
+    .navbar {
+        padding: 0.75rem;
+    }
+
+    .bar {
+        padding: 1rem;
+    }
+
+    main.container {
+        margin-top: 1.5rem;
+    }
+
+    .cc-logo img {
+        width: 50%;
+    }
+
+    .nav-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .user {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+
+
+
+/* Add this to your existing CSS */
+
+/* Filter Toggle Button - Hidden by default */
+.filter-toggle-btn {
+    display: none;
+    background: var(--teal-gradient);
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.filter-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(45, 182, 177, 0.3);
+}
+
+.navbar-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Tablets Portrait (768px - 991px) */
+@media (max-width: 991px) {
+
+    /* Show toggle button */
+    .filter-toggle-btn {
+        display: block;
+    }
+
+    /* Hide filters by default on mobile */
+    .navbar-filters {
+        display: none;
+        width: 100%;
+    }
+
+    /* Show filters when toggled */
+    .navbar-filters.show {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 1rem;
+    }
+
+    .navbar-brand-row {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .navbar-right {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+}
+
+/* Mobile Landscape (576px - 767px) */
+@media (max-width: 767px) {
+    .filter-toggle-btn {
+        display: block;
+    }
+
+    .navbar-filters {
+        display: none;
+    }
+
+    .navbar-filters.show {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filter-group {
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+    }
+
+    .search-btn {
+        margin-top: 1rem;
+    }
+}
+
+/* Mobile Portrait (up to 575px) */
+@media (max-width: 575px) {
+    .filter-toggle-btn {
+        display: block;
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+.index-main {
+    margin: 5% 0 0 0;
+}
+
+.meet {
+    padding-left: 5%;
+}
+
+.check-bio {
+    margin: 4% 0 2% 0;
+    padding-right: 5%;
+    text-align: end;
+}
+
+
+.select, .find-match {
+    text-align: center;
+    margin-top: 4%;
+    padding-top: 2%;
+    border-top: thick double #E1C447;
+    background: var(--gold-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.index-one {
+    display: flex;
+    justify-content: center;
+    padding: 2% 5%;
+}
+
+.index-one img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.index-filter {
+    display: flex;
+    justify-content: center;
+    padding: 1% 5%;
+}
+
+.index-filter img {
+    width: 110%;
+}
+
+.leela{
+    display: flex;
+    flex-direction: column;
+    margin: 0 5%;
+}
+
+.leela img {
+    justify-content: center;
+}
+

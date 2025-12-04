@@ -1,61 +1,69 @@
 <%- include('../partials/header') -%>
 
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-10">
-      <h2>All Users</h2>
-      
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Admin</th>
-            <th>Registered</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% users.forEach(u => { %>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-10">
+        <h2>All Users</h2>
+
+        <table class="table table-striped">
+          <thead>
             <tr>
-              <td><%= u.userName %></td>
-              <td><%= u.email %></td>
-              <td>
-                <% if (u.isApproved) { %>
-                  <span class="badge bg-success">Approved</span>
-                <% } else { %>
-                  <span class="badge bg-warning">Pending</span>
-                <% } %>
-              </td>
-              <td>
-                <% if (u.isAdmin) { %>
-                  <span class="badge bg-primary">Admin</span>
-                <% } else { %>
-                  <span class="badge bg-secondary">User</span>
-                <% } %>
-              </td>
-              <td><%= new Date(u.requestedAt).toLocaleDateString() %></td>
-              <td>
-                <form action="/admin/toggle-admin/<%= u._id %>" method="POST" style="display: inline;">
-                  <% if (u._id.equals(user._id)) { %>
-                  <button class="btn btn-sm btn-info" type="submit" disabled>
-                    <%} else {%>
-                      <button class="btn btn-sm btn-info" type="submit">
-                      <%}%>
-                    <%= u.isAdmin ? 'Remove Admin' : 'Make Admin' %>
-                  </button>
-                </form>
-              </td>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Admin</th>
+              <th>Registered</th>
+              <th>Actions</th>
             </tr>
-          <% }) %>
-        </tbody>
-      </table>
-      
-      <a class="btn btn-primary mt-3" href="/admin/pending-users">View Pending Users</a>
-      <a class="btn btn-primary mt-3" href="/profile">Back to Profile</a>
+          </thead>
+          <tbody>
+            <% users.forEach(u=> { %>
+              <tr>
+                <td>
+                  <%= u.userName %>
+                </td>
+                <td>
+                  <%= u.email %>
+                </td>
+                <td>
+                  <% if (u.isApproved) { %>
+                    <span class="badge bg-success">Approved</span>
+                    <% } else { %>
+                      <span class="badge bg-warning">Pending</span>
+                      <% } %>
+                </td>
+                <td>
+                  <% if (u.isAdmin) { %>
+                    <span class="badge bg-primary">Admin</span>
+                    <% } else { %>
+                      <span class="badge bg-secondary">User</span>
+                      <% } %>
+                </td>
+                <td>
+                  <%= new Date(u.requestedAt).toLocaleDateString() %>
+                </td>
+                <td>
+                  <form action="/admin/toggle-admin/<%= u._id %>" method="POST" style="display: inline;">
+                    <% if (u._id.equals(user._id)) { %>
+                      <button class="btn btn-sm btn-light" type="submit" disabled>
+                        <%= u.isAdmin ? 'Remove Admin' : 'Make Admin' %>
+                      </button>
+                      <% } else { %>
+                        <button class="btn btn-sm <%= u.isAdmin ? 'btn-danger' : 'btn-info' %>" type="submit">
+                          <%= u.isAdmin ? 'Remove Admin' : 'Make Admin' %>
+                        </button>
+                        <% } %>
+                  </form>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+
+        <a class="btn btn-primary mt-3" href="/admin/pending-users">View Pending Users</a>
+        <a class="btn btn-primary mt-3" href="/profile">Back to Profile</a>
+      </div>
     </div>
   </div>
-</div>
 
-<%- include('../partials/footer') -%>
+  <%- include('../partials/footer') -%>

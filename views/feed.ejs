@@ -1,62 +1,69 @@
 <%- include('partials/header') -%>
 
-<nav class="navbar">
-  <div class="navbar-container">
-    
-    <div class="navbar-actions">
-      <a href="/profile" class="nav-btn">
-        <i class="fa fa-user"></i> Profile
-      </a>
-      <a href="/post/favorites" class="nav-btn favorites">
-        <i class="fa fa-heart"></i> Favorites
-      </a>
-    </div>
+  <nav class="navbar">
+    <div class="navbar-container">
 
-    <div class="navbar-right">
-      <div class="navbar-brand">Select Business Type</div>
-      <form action="/post/search" method="POST" class="navbar-filters">
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="fb" value="fb">
-          <label for="fb">F&B</label>
-        </div>
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="therapy" value="therapy">
-          <label for="therapy">Therapy</label>
-        </div>
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="software" value="software">
-          <label for="software">Software/AI</label>
-        </div>
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="hardware" value="hardware">
-          <label for="hardware">Hardware/Wearable</label>
-        </div>
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="finance" value="finance">
-          <label for="finance">Finance/Investor</label>
-        </div>
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="pr" value="pr">
-          <label for="pr">Publication/Marketing</label>
-        </div>
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="media" value="media">
-          <label for="media">Media</label>
-        </div>
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="other" value="other">
-          <label for="other">Others</label>
-        </div>
-        <div class="filter-group">
-          <input type="radio" name="businessType" id="all" value="all" checked>
-          <label for="all">All</label>
-        </div>
-        <button type="submit" class="search-btn">Search</button>
-      </form>
-    </div>
+      <div class="navbar-actions">
+        <a href="/profile" class="nav-btn">
+          <i class="fa fa-user"></i> Profile
+        </a>
+        <a href="/post/favorites" class="nav-btn favorites">
+          <i class="fa fa-heart"></i> Favorites
+        </a>
+      </div>
 
-  </div>
-</nav>
+      <div class="navbar-right">
+        <div class="navbar-brand-row">
+          <div class="navbar-brand">Select Business Type</div>
+          <button type="button" class="filter-toggle-btn" onclick="toggleFilters()">
+            <i class="fa fa-bars"></i> Filters
+          </button>
+        </div>
+
+          <form action="/post/search" method="POST" class="navbar-filters" id="businessFilters">
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="fb" value="fb">
+              <label for="fb">F&B</label>
+            </div>
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="therapy" value="therapy">
+              <label for="therapy">Therapy</label>
+            </div>
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="software" value="software">
+              <label for="software">Software/AI</label>
+            </div>
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="hardware" value="hardware">
+              <label for="hardware">Hardware/Wearable</label>
+            </div>
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="finance" value="finance">
+              <label for="finance">Finance/Investor</label>
+            </div>
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="pr" value="pr">
+              <label for="pr">Publication/Marketing</label>
+            </div>
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="media" value="media">
+              <label for="media">Media</label>
+            </div>
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="other" value="other">
+              <label for="other">Others</label>
+            </div>
+            <div class="filter-group">
+              <input type="radio" name="businessType" id="all" value="all" checked>
+              <label for="all">All</label>
+            </div>
+            <button type="submit" class="search-btn">Search</button>
+          </form>
+        </div>
+
+        
+      </div>
+  </nav>
 
   <div class="container feed">
     <div class="row justify-content-center mt-5">
@@ -76,6 +83,14 @@
   </div>
 
   <div class="row justify-content-center mt-5 design">
-    <a class="btn btn-primary" href="https://angelbelroth.github.io/AngelBelArt/">Designed by Angel Bel</a>
+    <a class="btn btn-primary" href="https://angelbelroth.github.io/AngelBelArt/">Designed by Angel Bel ©</a>
   </div>
+
+  <script>
+    function toggleFilters() {
+      const filters = document.getElementById('businessFilters');
+      filters.classList.toggle('show');
+    }
+  </script>
+
   <%- include('partials/footer') -%>

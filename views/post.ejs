@@ -9,13 +9,13 @@
         <div class="row justify-content-between">
 
           <form class="col-1" action="/post/<%= post.id %>/toggle-favorite" method="POST">
-            <button class="btn btn-primary fa fa-heart <%= user.favorites.includes(post.id) ? 'text-primary' : '' %>"
+            <button class="btn btn-primary fa fa-heart <%= user.favorites.includes(post.id) ? 'text-danger' : '' %>"
               type="submit"></button>
           </form>
 
 
           <form class="col-1" action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
-            <button class="btn btn-primary fa fa-thumbs-up <%= post.likedBy.includes(user.id) ? 'text-info' : '' %>"
+            <button class="btn btn-primary fa fa-thumbs-up <%= post.likedBy.includes(user.id) ? 'text-primary' : '' %>"
               type="submit"></button>
           </form>
           <h3 class="col-3">Likes: <%= post.likes %>
@@ -178,9 +178,6 @@
                 <h6>Location(s)</h6>
                 <%= post.location %>
                   <div class="break"></div>
-                  <!-- <h6>Business Type</h6>
-                  <%= post.businessType %>
-                    <div class="break"></div> -->
                   <h6>The Product or Service that we offer</h6>
                   <%= post.ps %>
                     <div class="break"></div>
@@ -208,7 +205,7 @@
             <p>No reviews yet. Be the first to review!</p>
             <% } %>
 
-              <!-- Add Review Form -->
+              <!-- Review Form -->
               <div class="card mb-4">
                 <div class="card-body">
                   <h5>Write a Review</h5>
