@@ -550,6 +550,66 @@ h6 {
     font-family: cursive;
 }
 
+
+.index-main {
+    margin: 5% 0 0 0;
+}
+
+.meet {
+    padding-left: 5%;
+}
+
+.select, .find-match {
+    text-align: center;
+    margin-top: 4%;
+    padding-top: 2%;
+    border-top: thick double #E1C447;
+    background: var(--gold-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.check-bio {
+    margin: 4% 0 2% 0;
+    padding-right: 5%;
+    text-align: end;
+}
+
+.index-one {
+    display: flex;
+    justify-content: center;
+    padding: 2% 5%;
+}
+
+.index-one img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.index-filter {
+    display: flex;
+    justify-content: center;
+    padding: 1% 5%;
+}
+
+.index-filter img {
+    width: 110%;
+}
+
+.leela{
+    display: flex;
+    flex-direction: column;
+    margin: 0 5%;
+}
+
+.leela img {
+    justify-content: center;
+}
+
+
+
+
 /* ============================================================
    RESPONSIVE DESIGN - MEDIA QUERIES
 ============================================================ */
@@ -735,10 +795,6 @@ h6 {
 }
 
 
-
-
-/* Add this to your existing CSS */
-
 /* Filter Toggle Button - Hidden by default */
 .filter-toggle-btn {
     display: none;
@@ -837,61 +893,377 @@ h6 {
     }
 }
 
+/* SECOND STYLE */
 
+/* Tablets & Small Laptops (992px - 1199px) */
+@media (max-width: 1199px) {
+    .navbar-container {
+        flex-wrap: wrap;
+    }
 
-.index-main {
-    margin: 5% 0 0 0;
+    .navbar-right {
+        order: 3;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    ul.row.list-unstyled > li {
+        flex: 0 0 calc(25% - 20px);
+        max-width: calc(25% - 20px);
+    }
+
+    header h1 a {
+        font-size: 3.5rem;
+    }
+
+    header h2 {
+        font-size: 1.75rem;
+    }
+
+    .select,
+    .find-match {
+        font-size: 2rem;
+    }
 }
 
-.meet {
-    padding-left: 5%;
+/* Tablets Portrait (768px - 991px) */
+@media (max-width: 991px) {
+    ul.row.list-unstyled > li {
+        flex: 0 0 calc(33.33% - 20px);
+        max-width: calc(33.33% - 20px);
+    }
+
+    .navbar-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navbar-actions {
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .navbar-right {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    /* Show filter toggle button */
+    .filter-toggle-btn {
+        display: block;
+    }
+
+    /* Hide filters by default */
+    .navbar-filters {
+        display: none;
+        width: 100%;
+    }
+
+    /* Show filters when toggled */
+    .navbar-filters.show {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 1rem;
+    }
+
+    .navbar-brand-row {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .filter-group {
+        justify-content: flex-start;
+        padding: 0.5rem 0;
+    }
+
+    .search-btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .nav-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    section.col-6 {
+        padding: 1.5rem;
+        max-width: 90%;
+    }
+
+    .cc-logo img {
+        width: 50%;
+    }
+
+    .nav-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .user {
+        align-items: center;
+        text-align: center;
+    }
+
+    .navbar-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-btn {
+        width: 100%;
+    }
+
+    .filter-toggle-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.9rem;
+    }
+
+    .table {
+        font-size: 0.75rem;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .select,
+    .find-match {
+        font-size: 1.5rem;
+        padding-top: 1rem;
+    }
+
+    .index-one,
+    .index-filter {
+        padding: 3% 2%;
+    }
+
+    .leela {
+        margin: 0 1%;
+        padding: 1rem;
+    }
+
+    .meet,
+    .check-bio {
+        font-size: 1.25rem;
+    }
+
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: 95%;
+    }
+
+    .modal-body {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .row.justify-content-between {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .row.justify-content-between form,
+    .row.justify-content-between .btn {
+        width: 100%;
+    }
 }
 
-.select, .find-match {
-    text-align: center;
-    margin-top: 4%;
-    padding-top: 2%;
-    border-top: thick double #E1C447;
-    background: var(--gold-gradient);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* Extra Small Devices (up to 400px) */
+@media (max-width: 400px) {
+    header h1 a {
+        font-size: 1.75rem;
+    }
+
+    header h2 {
+        font-size: 1.1rem;
+    }
+
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    section.col-6 {
+        padding: 0.75rem;
+    }
+
+    .form-control,
+    textarea.form-control {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+    }
+} img {
+        width: 30%;
+    }
+
+    .col-6,
+    .col-8,
+    .col-10 {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .leela {
+        margin: 0 3%;
+        padding: 1.5rem;
+    }
+
+    .meet,
+    .check-bio {
+        padding-left: 3%;
+        padding-right: 3%;
+        text-align: center;
+    }
+
+
+/* Mobile Landscape (576px - 767px) */
+@media (max-width: 767px) {
+    header h1 a {
+        font-size: 2.5rem;
+    }
+
+    header h2 {
+        font-size: 1.5rem;
+    }
+
+    header span {
+        font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .user-name {
+        font-size: 1.5rem;
+    }
+
+    ul.row.list-unstyled > li {
+        flex: 0 0 calc(50% - 15px);
+        max-width: calc(50% - 15px);
+    }
+
+    ul.row.list-unstyled.profile > li {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    ul.row.list-unstyled.profile {
+        flex-direction: column;
+    }
+
+    .navbar {
+        padding: 1rem;
+        margin-top: 30px;
+    }
+
+    .bar {
+        padding: 1.5rem;
+    }
+
+    .cc-logo img {
+        width: 40%;
+    }
+
+    section.col-6 {
+        padding: 1.25rem;
+    }
+
+    .table {
+        font-size: 0.875rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.5rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .select,
+    .find-match {
+        font-size: 1.75rem;
+    }
+
+    .index-one,
+    .index-filter {
+        padding: 2% 3%;
+    }
+
+    .leela {
+        margin: 0 2%;
+        padding: 1rem;
+    }
+
+    .modal-dialog {
+        margin: 1rem;
+    }
 }
 
-.check-bio {
-    margin: 4% 0 2% 0;
-    padding-right: 5%;
-    text-align: end;
-}
+/* Mobile Portrait (up to 575px) */
+@media (max-width: 575px) {
+    header h1 a {
+        font-size: 2rem;
+    }
 
-.index-one {
-    display: flex;
-    justify-content: center;
-    padding: 2% 5%;
-}
+    header h2 {
+        font-size: 1.25rem;
+    }
 
-.index-one img {
-    width: 100%;
-    border-radius: 20px;
-}
+    h2 {
+        font-size: 1.75rem;
+    }
 
-.index-filter {
-    display: flex;
-    justify-content: center;
-    padding: 1% 5%;
-}
+    h3 {
+        font-size: 1.25rem;
+    }
 
-.index-filter img {
-    width: 110%;
-}
+    .user-name {
+        font-size: 1.25rem;
+    }
 
-.leela{
-    display: flex;
-    flex-direction: column;
-    margin: 0 5%;
-}
+    ul.row.list-unstyled {
+        margin-top: 30px;
+    }
 
-.leela img {
-    justify-content: center;
-}
+    ul.row.list-unstyled > li {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
 
+    section.col-6 {
+        padding: 1rem;
+    }
+
+    .navbar {
+        padding: 0.75rem;
+    }
+
+    .bar {
+        padding: 1rem;
+    }
+
+    main.container {
+        margin-top: 1.5rem;
+    }
+}
