@@ -112,19 +112,6 @@ module.exports = {
     }
   },
   likePost: async (req, res) => {
-    // try {
-    //   await Post.findOneAndUpdate(
-    //     { _id: req.params.id },
-    //     {
-    //       $inc: { likes: 1 },
-    //     }
-    //   );
-    //   console.log("Likes +1");
-    //   res.redirect(`/post/${req.params.id}`);
-    // } catch (err) {
-    //   console.log(err);
-    // }
-
     try {
 
       const post = await Post.findById(req.params.id);
@@ -175,17 +162,6 @@ module.exports = {
       res.redirect("/profile");
     }
   },
-
- // favoritePost: async (req, res) => {
-  //   // if (req.user.favorite.includes(req.params.id)) {
-  //   //   req.user.favorite = req.user.favorite.filter(v => v !== req.params.id)
-  //   // } else {
-  //   //   req.user.favorite.push(req.params.id)
-  //   // }
-  //   // res.redirect(`/post/${req.params.id}`);
-  //   // console.log('favoritePost')
-  // },
-
 
   toggleFavorite: async (req, res) => {
     try {
