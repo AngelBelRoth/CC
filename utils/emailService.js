@@ -20,7 +20,7 @@ const sendApprovalEmail = async (userEmail, userName) => {
       <h2>Welcome, ${userName}!</h2>
       <p>Great news! Your account has been approved by our admin team.</p>
       <p>You can now login and start using our platform.</p>
-      <p><a href="${process.env.BASE_URL || 'https://communityconnect.up.railway.app'}/login">Click here to login</a></p>
+      <p><a href="${process.env.BASE_URL || 'https://community-zubc.onrender.com'}/login">Click here to login</a></p>
       <p>Thank you for joining us!</p>
     `
   };
@@ -75,7 +75,7 @@ const sendAdminNotification = async (userName, userEmail, companyName, companyDe
       </ul>
       <p><strong>To review this user:</strong></p>
       <ol>
-        <li>Login to your admin account at <a href="${process.env.BASE_URL || 'https://communityconnect.up.railway.app'}/login">${process.env.BASE_URL || 'https://communityconnect.up.railway.app'}/login</a></li>
+        <li>Login to your admin account at <a href="${process.env.BASE_URL || 'https://community-zubc.onrender.com'}/login">${process.env.BASE_URL || 'https://community-zubc.onrender.com'}/login</a></li>
         <li>Go to Admin Panel > Pending Users</li>
       </ol>
     `
@@ -90,7 +90,7 @@ const sendAdminNotification = async (userName, userEmail, companyName, companyDe
 };
 
 const sendPasswordResetEmail = async (userEmail, userName, resetToken) => {
-  const resetUrl = `${process.env.BASE_URL || 'https://communityconnect.up.railway.app'}/reset-password/${resetToken}`;
+  const resetUrl = `${process.env.BASE_URL || 'https://community-zubc.onrender.com'}/reset-password/${resetToken}`;
   
   const mailOptions = {
     from: process.env.EMAIL_USER,
