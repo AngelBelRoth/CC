@@ -451,6 +451,9 @@ ul.row.list-unstyled.profile>li {
     transform: scale(1.04);
 }
 
+.sub {
+    margin-bottom: 2.8%;
+}
 /* ----------------------------------------------------
    TYPOGRAPHY & SPACING
 ---------------------------------------------------- */
