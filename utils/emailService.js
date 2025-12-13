@@ -20,7 +20,7 @@ const sendApprovalEmail = async (userEmail, userName) => {
       <h2>Welcome, ${userName}!</h2>
       <p>Great news! Your account has been approved by our admin team.</p>
       <p>You can now login and start using our platform.</p>
-      <p><a href="${process.env.BASE_URL || 'https://community-zubc.onrender.com'}/login">Click here to login</a></p>
+      <p><a href="${process.env.BASE_URL || 'https://community-.onrender.com'}/login">Click here to login</a></p>
       <p>Thank you for joining us!</p>
     `
   };
